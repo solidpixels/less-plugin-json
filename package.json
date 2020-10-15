@@ -1,0 +1,19 @@
+{
+  "name": "less-plugin-json",
+  "version": "0.1",
+  "description": "Allow LESS to import JSON files",
+  "main": "index.js",
+  "scripts": {
+    "test": "test/index.js"
+  },
+  "keywords": [
+    "less",
+    "plugin"
+  ],
+  "author": "solidpixels",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "less": "^2.5.0"
+  }
+}

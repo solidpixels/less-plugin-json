@@ -1,0 +1,22 @@
+{
+  "margin": "10px",
+  "border": {
+    "size": "1px",
+    "color": "#fff999"
+  },
+  "color-preset": {
+    "215": "#cdf"
+  },
+  "array": [
+    "#ccc",
+    null,
+    5,
+    true,
+    false
+  ],
+  "use": {
+    "lb": true,
+    "flexbox": true,
+    "header": true
+  }
+}
