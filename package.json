@@ -1,5 +1,5 @@
 {
-  "name": "less-plugin-json",
+  "name": "@solidpixels/less-plugin-json",
   "version": "0.1.0",
   "description": "Allow LESS to import JSON files",
   "main": "index.js",
@@ -18,10 +18,17 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/solidpixels/less-plugin-json"
+    "url": "git+https://github.com/solidpixels/less-plugin-json.git"
   },
   "dependencies": {},
   "devDependencies": {
     "less": "^2.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/solidpixels/less-plugin-json/issues"
+  },
+  "homepage": "https://github.com/solidpixels/less-plugin-json#readme",
+  "directories": {
+    "test": "test"
   }
 }
