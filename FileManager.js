@@ -27,11 +27,18 @@ FileManager.prototype.transformVariables = function(obj) {
   return result;
 };
 
+FileManager.prototype.getPath = function(filename, currentDirectory) {
+  if (path.isAbsolute(filename)) {
+    return filename;
+  }
+  return path.join(currentDirectory, filename);
+}
+
 FileManager.prototype.loadFile = function(filename, currentDirectory, options, environment) {
   return new Promise((resolve, reject) => {
     let contents;
     try {
-      const fileContent = require(path.resolve(path.join(currentDirectory, filename)));
+      const fileContent = require(this.getPath(filename, currentDirectory));
       contents = this.transformVariables(fileContent).join('');
     } catch (err) {
       reject(err);
@@ -51,9 +58,11 @@ FileManager.prototype.supports = function(filename, currentDirectory, options, e
   }
 
   try {
-    const stat = fs.statSync(path.join(currentDirectory, filename));
+    const stat = fs.statSync(this.getPath(filename, currentDirectory));
     return stat.isFile();
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 
   return false;
 };
