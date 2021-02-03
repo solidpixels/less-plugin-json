@@ -35,6 +35,11 @@ FileManager.prototype.getPath = function(filename, currentDirectory) {
 }
 
 FileManager.prototype.loadFile = function(filename, currentDirectory, options, environment) {
+  // Check filename again, some environments (ie. Gulp) skip `supports` method.
+  if (!filename.match(/\.json?$/)) {
+    return false;
+  }
+
   return new Promise((resolve, reject) => {
     let contents;
     try {
