@@ -31,7 +31,7 @@ FileManager.prototype.getPath = function(filename, currentDirectory) {
   if (path.isAbsolute(filename)) {
     return filename;
   }
-  return path.join(currentDirectory, filename);
+  return currentDirectory ? path.join(currentDirectory, filename) : filename;
 }
 
 FileManager.prototype.loadFile = function(filename, currentDirectory, options, environment) {

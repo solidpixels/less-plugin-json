@@ -1,10 +1,11 @@
 {
   "name": "@solidpixels/less-plugin-json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Allow LESS to import JSON files",
   "main": "index.js",
   "scripts": {
-    "test": "test/index.js"
+    "test": "node test/index.js && lessc test/style.less test/result.css --plugin=index.js && echo Success",
+    "a": "lessc test/style.less test/result.css --plugin=index.js"
   },
   "files": [
     "index.js",
