@@ -7,9 +7,25 @@ const FileManager = function() {};
 
 FileManager.prototype = new less.FileManager();
 
+FileManager.prototype.stringify = function(obj) {
+  if (!obj) {
+    throw new Error('Undefined variable');
+  }
+  // LESS does not support recursive maps
+  if (obj instanceof Array) {
+    return obj.join(',');
+  }
+  return `{${Object.keys(obj).map((key) => `${key}:${obj[key]}`).join(';')}}`;
+};
+
 FileManager.prototype.transformVariables = function(obj) {
   const result = [];
   const transform = (innerObj, prefix = []) => {
+    if (prefix[0] && prefix[0].substr(0, 1) === '$') {
+      result.push(`@${prefix[0].substr(1)}:${this.stringify(innerObj)};`);
+      return;
+    }
+
     if (innerObj && typeof innerObj === 'object') {
       for (let i = 0, keys = Object.keys(innerObj); i < keys.length; i++) {
         const key = keys[i];

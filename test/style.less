@@ -5,5 +5,7 @@ body {
   margin: @margin;
   border: @border--size @border--color;
   background: @array--1;
-  background: data-uri('../test/image.svg');
+  background-color: @color-preset[red];
+  background-image: data-uri('../test/image.svg');
+  features: @features;
 }

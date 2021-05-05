@@ -8,15 +8,14 @@ const testVariables = () => {
     '@margin:10px;',
     '@border--size:1px;',
     '@border--color:#fff999;',
-    '@color-preset--215:#cdf;',
+    '@color-preset:{red:#ff0000;green:#ff0000};',
+    '@empty:{};',
     '@array--0:#ccc;',
     '@array--1:null;',
     '@array--2:5;',
     '@array--3:true;',
     '@array--4:false;',
-    '@use--lb:true;',
-    '@use--flexbox:true;',
-    '@use--header:true;'
+    '@features:flexbox,header;'
   ];
 
   console.assert(JSON.stringify(result) === JSON.stringify(reference))

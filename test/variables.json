@@ -4,9 +4,11 @@
     "size": "1px",
     "color": "#fff999"
   },
-  "color-preset": {
-    "215": "#cdf"
+  "$color-preset": {
+    "red": "#ff0000",
+    "green": "#ff0000"
   },
+  "$empty": {},
   "array": [
     "#ccc",
     null,
@@ -14,9 +16,5 @@
     true,
     false
   ],
-  "use": {
-    "lb": true,
-    "flexbox": true,
-    "header": true
-  }
+  "$features": ["flexbox", "header"]
 }
