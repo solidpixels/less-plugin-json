@@ -23,7 +23,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "less": "^2.5.0"
+    "less": "^3.9.0"
   },
   "bugs": {
     "url": "https://github.com/solidpixels/less-plugin-json/issues"

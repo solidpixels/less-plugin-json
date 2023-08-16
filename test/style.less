@@ -1,10 +1,18 @@
 @import './variables.json';
 @import './component.less';
 
+.test() when (@margin > 0) {
+  .example {
+    margin: unit(@margin, %) + 10;
+  }
+}
+.test();
+
 body {
-  margin: @margin;
-  border: @border--size @border--color;
-  background: @array--1;
+  padding: @margin;
+  margin: @margin + 4;
+  border: @border--size fade(@border--color, 13%);
+  background: darken(@array--2, 10%);
   background-color: @color-preset[red];
   background-image: data-uri('../test/image.svg');
   features: @features;

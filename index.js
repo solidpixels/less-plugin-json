@@ -1,10 +1,12 @@
 // lessc style.less --plugin=index.js
-const getFileManager = require('./FileManager.js');
+const FileManager = require('./FileManager.js');
+const ImportVisitor = require('./ImportVisitor.js');
 
 module.exports = {
-  minVersion: [2, 5, 0],
-  install: function(less, pluginManager) {
-    const FileManager = getFileManager(less);
-    pluginManager.addFileManager(new FileManager());
+  minVersion: [3, 9, 0],
+  install: function (less, pluginManager) {
+    const filesCache = {};
+    pluginManager.addFileManager(new FileManager(less)(filesCache));
+    pluginManager.addVisitor(new ImportVisitor(less)(filesCache));
   },
 };

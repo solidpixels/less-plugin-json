@@ -1,26 +1,26 @@
 const less = require('less');
-const getFileManager = require('../FileManager.js');
+const getImportVisitor = require('../ImportVisitor.js');
 const data = require('./variables.json');
 
 const testVariables = () => {
-  const FileManager = getFileManager(less)
-  const manager = new FileManager();
-  const result = manager.transformVariables(data);
+  const ImportVisitor = getImportVisitor(less);
+  const visitor = new ImportVisitor();
+  const result = visitor.transform(data);
   const reference = [
-    '@margin:10px;',
-    '@border--size:1px;',
-    '@border--color:#fff999;',
-    '@color-preset:{red:#ff0000;green:#ff0000};',
-    '@empty:{};',
-    '@array--0:#ccc;',
-    '@array--1:null;',
-    '@array--2:5;',
-    '@array--3:true;',
-    '@array--4:false;',
-    '@features:flexbox,header;'
+    '@margin',
+    '@border--size',
+    '@border--color',
+    '@color-preset',
+    '@empty',
+    '@array--0',
+    '@array--1',
+    '@array--2',
+    '@array--3',
+    '@array--4',
+    '@features'
   ];
 
-  console.assert(JSON.stringify(result) === JSON.stringify(reference))
+  console.assert(JSON.stringify(result.map((node) => node.name)) === JSON.stringify(reference))
 };
 
 testVariables();
