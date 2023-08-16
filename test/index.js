@@ -1,7 +1,9 @@
-const FileManager = require('../FileManager.js');
+const less = require('less');
+const getFileManager = require('../FileManager.js');
 const data = require('./variables.json');
 
 const testVariables = () => {
+  const FileManager = getFileManager(less)
   const manager = new FileManager();
   const result = manager.transformVariables(data);
   const reference = [
