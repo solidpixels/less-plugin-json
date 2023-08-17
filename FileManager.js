@@ -62,30 +62,19 @@ module.exports = function(less) {
         const fileContent = require(this.getPath(filename, currentDirectory));
         contents = this.transformVariables(fileContent).join('');
       } catch (err) {
-        reject(err);
+        reject({ type: 'File', message: `'${filename}' wasn't found.` });
       }
   
       if (contents) {
         resolve({ contents, filename });
       } else {
-        reject(new Error('Can\'t generate JSON variables file.'))
+        reject({ type: 'File', message: 'Can\'t generate JSON variables file.' })
       }
     });
   };
   
   FileManager.prototype.supports = function(filename, currentDirectory, options, environment) {
-    if (!filename.match(/\.json?$/)) {
-      return false;
-    }
-  
-    try {
-      const stat = fs.statSync(this.getPath(filename, currentDirectory));
-      return stat.isFile();
-    } catch (err) {
-      console.log(err);
-    }
-  
-    return false;
+    return !!filename.match(/\.json?$/);
   };
   
   FileManager.prototype.tryAppendExtension = function(filename, ext) {
