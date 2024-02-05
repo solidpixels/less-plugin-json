@@ -47,7 +47,7 @@ module.exports = function(less) {
     if (path.isAbsolute(filename)) {
       return filename;
     }
-    return currentDirectory ? path.join(currentDirectory, filename) : filename;
+    return currentDirectory ? path.resolve(currentDirectory, filename) : undefined
   }
   
   FileManager.prototype.loadFile = function(filename, currentDirectory, options, environment) {
@@ -59,10 +59,19 @@ module.exports = function(less) {
     return new Promise((resolve, reject) => {
       let contents;
       try {
+        const absolutePath = this.getPath(filename, currentDirectory)
+        if (!absolutePath) {
+          throw new Error();
+        }
+
+        if (this.checkPrefix && !this.checkPrefix(absolutePath, options.restrictedPaths ?? [])) {
+          throw new Error();
+        }
+
         const fileContent = require(this.getPath(filename, currentDirectory));
         contents = this.transformVariables(fileContent).join('');
       } catch (err) {
-        reject({ type: 'File', message: `'${filename}' wasn't found.` });
+        reject({ type: 'File', message: `Cannot load '${filename}'.` });
       }
   
       if (contents) {
